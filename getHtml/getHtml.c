@@ -3,6 +3,8 @@
 #include <time.h>
 #include <string.h>
 #include "getHtml.h"
+#include "../path.h"
+#include "../max.h"
 
 int main()
 {
@@ -10,6 +12,7 @@ int main()
 	FILE* htmlFile;
 
 	char company[MAX_COMPANY];
+	char symbol[MAX_SYMBOL];
 	char url[MAX_URL];
 	char scriptBlock[MAX_BLOCK];
 
@@ -41,16 +44,16 @@ int main()
 
 	memset(commandMakeRootDirectory, '\0', MAX_COMMAND);
 	strcpy(commandMakeRootDirectory, "mkdir ");
-	strcat(commandMakeRootDirectory, ROOT_PATH);
+	strcat(commandMakeRootDirectory, "../data_html/");
 	strcat(commandMakeRootDirectory, currentTime); 
 
 	system(commandMakeRootDirectory);	
 
 	stockListFile = fopen("../stock.list", "r");
 
-	while(fscanf(stockListFile, "%s %s", company, url) != EOF)
+	while(fscanf(stockListFile, "%s %s %s", company, symbol, url) != EOF)
 	{
-		strcpy(pathHtml, ROOT_PATH);
+		strcpy(pathHtml, "../data_html/");
 		strcat(pathHtml, currentTime);
 		strcat(pathHtml, "/");
 		strcat(pathHtml, company);
@@ -73,7 +76,6 @@ int main()
 		system(commandGetHtml);
 
 		strcpy(commandCopyHtaccess, "cp ");
-		strcat(commandCopyHtaccess, SOURCE_PATH);
 		strcat(commandCopyHtaccess, ".htaccess");
 		strcat(commandCopyHtaccess, " ");
 		strcat(commandCopyHtaccess, pathHtml);

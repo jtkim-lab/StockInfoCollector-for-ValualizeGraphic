@@ -35,4 +35,4 @@ $(TARGET) : $(OBJS)
 clean :
 	rm -f $(OBJS) $(TARGET)
 
-getData.o : getHtml.c getHtml.h
+getData.o : getHtml.c getHtml.h ../path.h ../max.h

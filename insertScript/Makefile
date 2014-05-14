@@ -35,4 +35,4 @@ $(TARGET) : $(OBJS)
 clean :
 	rm -f $(OBJS) $(TARGET)
 
-getData.o : insertScript.c insertScript.h
+getData.o : insertScript.c insertScript.h ../path.h ../max.h

@@ -3,6 +3,8 @@
 #include <time.h>
 #include <string.h>
 #include "insertScript.h"
+#include "../max.h"
+#include "../path.h"
 
 int main()
 {
@@ -12,6 +14,7 @@ int main()
 
 	char company[MAX_COMPANY];
 	char url[MAX_URL];
+	char symbol[MAX_SYMBOL];
 	char scriptBlock[MAX_BLOCK];
 
 	char year[5];
@@ -41,22 +44,23 @@ int main()
 	strcat(currentTime, day);
 
 	stockListFile = fopen("../stock.list", "r");
-	insertScriptFile = fopen("insertScript.html", "r");
 
-	while(fscanf(stockListFile, "%s %s", company, url) != EOF)
+	while(fscanf(stockListFile, "%s %s %s", company, symbol, url) != EOF)
 	{
-		strcpy(pathHtml, ROOT_PATH);
+		insertScriptFile = fopen("insertScript.html", "r");
+
+		strcpy(pathHtml, "../data_html/");
 		strcat(pathHtml, currentTime);
 		strcat(pathHtml, "/");
 		strcat(pathHtml, company);
 		strcat(pathHtml, "/");
 		
 		strcpy(pathHtmlFile, pathHtml);
-		strcat(pathHtmlFile, "finance?q=atvi.html");
+		strcat(pathHtmlFile, "finance?q=");
+		strcat(pathHtmlFile, symbol);
+		strcat(pathHtmlFile, ".html");
 
-		htmlFile = fopen("/root/ValualizeGraphic/data_html/2014-05-14/Activision_Blizzard/finance?q=atvi.html", "a");
-
-		printf("\n%d\n", htmlFile);
+		htmlFile = fopen(pathHtmlFile, "a");
 
 		while(fgets(scriptBlock, MAX_BLOCK, insertScriptFile) != NULL)
 		{
