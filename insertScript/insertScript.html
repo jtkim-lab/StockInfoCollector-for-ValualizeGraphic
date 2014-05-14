@@ -13,28 +13,26 @@
 </script>
 
 <script>
-Hello World!
 
 	<?php
-echo "Hello World!";
-
+		
 		$f1 = "closedPrice.txt";
 		$f2 = "vol.txt";
 		$f3 = "marketCap.txt";
-		$fs = fopen($f1, "w");
-		$fs = fopen($f2, "w");
-		$fs = fopen($f3, "w");
+		$fs1 = fopen($f1, "w");
+		$fs2 = fopen($f2, "w");
+		$fs3 = fopen($f3, "w");
 		$cp = closedPrice;
 		$v = vol;
 		$mc = marketCap;
 
-		fwrite($f1, $cp);
-		fwrite($f2, $v);
-		fwrite($f3, $mc);
+		fwrite($fs1, $cp);
+		fwrite($fs2, $v);
+		fwrite($fs3, $mc);
 		
-		fclose($f1);
-		fclose($f2);
-		fclose($f3);
+		fclose($fs1);
+		fclose($fs2);
+		fclose($fs3);
 	?>
 
 </script>
