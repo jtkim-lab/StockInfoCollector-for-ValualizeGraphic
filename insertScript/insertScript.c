@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include "getData.h"
+#include "insertScript.h"
 
 int main()
 {
@@ -40,14 +40,7 @@ int main()
 	strcat(currentTime, "-");
 	strcat(currentTime, day);
 
-	memset(commandMakeRootDirectory, '\0', MAX_COMMAND);
-	strcpy(commandMakeRootDirectory, "mkdir ");
-	strcat(commandMakeRootDirectory, ROOT_PATH);
-	strcat(commandMakeRootDirectory, currentTime); 
-
-	system(commandMakeRootDirectory);	
-
-	stockListFile = fopen("stock.list", "r");
+	stockListFile = fopen("../stock.list", "r");
 	insertScriptFile = fopen("insertScript.html", "r");
 
 	while(fscanf(stockListFile, "%s %s", company, url) != EOF)
@@ -57,29 +50,18 @@ int main()
 		strcat(pathHtml, "/");
 		strcat(pathHtml, company);
 		strcat(pathHtml, "/");
-
-		memset(commandMakeDirectory, '\0', MAX_COMMAND);
-		memset(commandGetHtml, '\0', MAX_COMMAND);
-
-		strcpy(commandMakeDirectory, "mkdir ");
-		strcat(commandMakeDirectory, pathHtml);
-
-		strcpy(commandGetHtml, "wget ");
-		strcat(commandGetHtml, "-P ");
-		strcat(commandGetHtml, pathHtml);
-		strcat(commandGetHtml, " ");
-		strcat(commandGetHtml, url);
-
-		system(commandMakeDirectory);
-		system(commandGetHtml);
-
-		strcpy(commandCopyHtaccess, "cp ");
-		strcat(commandCopyHtaccess, SOURCE_PATH);
-		strcat(commandCopyHtaccess, ".htaccess");
-		strcat(commandCopyHtaccess, " ");
-		strcat(commandCopyHtaccess, pathHtml);
 		
-		system(commandCopyHtaccess);
+		strcpy(pathHtmlFile, pathHtml);
+		strcat(pathHtmlFile, "finance?q=atvi.html");
+
+		htmlFile = fopen("/root/ValualizeGraphic/data_html/2014-05-14/Activision_Blizzard/finance?q=atvi.html", "a");
+
+		printf("\n%d\n", htmlFile);
+
+		while(fgets(scriptBlock, MAX_BLOCK, insertScriptFile) != NULL)
+		{
+			fputs(scriptBlock, htmlFile);
+		}
 	}
 
 	return 0;

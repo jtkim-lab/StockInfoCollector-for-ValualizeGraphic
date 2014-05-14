@@ -2,12 +2,11 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include "getData.h"
+#include "getHtml.h"
 
 int main()
 {
 	FILE* stockListFile;
-	FILE* insertScriptFile;
 	FILE* htmlFile;
 
 	char company[MAX_COMPANY];
@@ -47,8 +46,7 @@ int main()
 
 	system(commandMakeRootDirectory);	
 
-	stockListFile = fopen("stock.list", "r");
-	insertScriptFile = fopen("insertScript.html", "r");
+	stockListFile = fopen("../stock.list", "r");
 
 	while(fscanf(stockListFile, "%s %s", company, url) != EOF)
 	{
@@ -68,6 +66,7 @@ int main()
 		strcat(commandGetHtml, "-P ");
 		strcat(commandGetHtml, pathHtml);
 		strcat(commandGetHtml, " ");
+		strcat(commandGetHtml, "--html-extension ");
 		strcat(commandGetHtml, url);
 
 		system(commandMakeDirectory);
