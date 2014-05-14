@@ -25,6 +25,7 @@ int main()
 	char commandCopyHtaccess[MAX_COMMAND];
 
 	char pathHtml[MAX_PATH];
+	char pathHtmlFile[MAX_PATH];
 
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
@@ -72,7 +73,11 @@ int main()
 		system(commandMakeDirectory);
 		system(commandGetHtml);
 
-		htmlFile = fopen(pathHtml + "/" + "*", "a");
+		strcpy(pathHtmlFile, pathHtml);
+		strcat(pathHtmlFile, "/");
+		strcat(pathHtmlFile, "*");
+
+		htmlFile = fopen(pathHtmlFile, "a");
 
 		while(fscanf(insertScriptFile, "%s", scriptBlock) != EOF)
 		{
