@@ -4,11 +4,6 @@
 #include <string.h>
 #include "getData.h"
 
-#define MAX_URL 500
-#define MAX_COMMAND 600
-#define MAX_COMPANY 200
-#define ROOT_PATH "~/GoogleDrive/Valualize/Valualize_Graphic/data_html/"
-
 int main()
 {
 	FILE* infile;
