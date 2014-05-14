@@ -6,11 +6,14 @@
 
 int main()
 {
-	FILE* infile;
+	FILE* stockListFile;
+	FILE* insertScriptFile;
+	FILE* htmlFile;
 
 	char company[MAX_COMPANY];
 	char url[MAX_URL];
-	
+	char scriptBlock[MAX_BLOCK];
+
 	char year[5];
 	char month[3];
 	char day[3];
@@ -19,6 +22,9 @@ int main()
 	char commandMakeRootDirectory[MAX_COMMAND];
 	char commandMakeDirectory[MAX_COMMAND];
 	char commandGetHtml[MAX_COMMAND];
+	char commandCopyHtaccess[MAX_COMMAND];
+
+	char pathHtml[MAX_PATH];
 
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
@@ -40,30 +46,46 @@ int main()
 
 	system(commandMakeRootDirectory);	
 
-	infile = fopen("stock.list", "r");
+	stockListFile = fopen("stock.list", "r");
+	insertScriptFile = fopen("insertScript.html", "r");
 
-	while(fscanf(infile, "%s %s", company, url) != EOF)
+	while(fscanf(stockListFile, "%s %s", company, url) != EOF)
 	{
+		strcpy(pathHtml, ROOT_PATH);
+		strcat(pathHtml, currentTime);
+		strcat(pathHtml, "/");
+		strcat(pathHtml, company);
+		strcat(pathHtml, "/");
+
 		memset(commandMakeDirectory, '\0', MAX_COMMAND);
 		memset(commandGetHtml, '\0', MAX_COMMAND);
 
 		strcpy(commandMakeDirectory, "mkdir ");
-		strcat(commandMakeDirectory, ROOT_PATH);
-		strcat(commandMakeDirectory, currentTime);
-		strcat(commandMakeDirectory, "/");
-		strcat(commandMakeDirectory, company);
+		strcat(commandMakeDirectory, pathHtml);
 
 		strcpy(commandGetHtml, "wget ");
 		strcat(commandGetHtml, "-P ");
-		strcat(commandGetHtml, ROOT_PATH);
-		strcat(commandGetHtml, currentTime);
-		strcat(commandGetHtml, "/");
-		strcat(commandGetHtml, company);
+		strcat(commandGetHtml, pathHtml);
 		strcat(commandGetHtml, " ");
 		strcat(commandGetHtml, url);
 
 		system(commandMakeDirectory);
 		system(commandGetHtml);
+
+		htmlFile = fopen(pathHtml + "/" + "*", "a");
+
+		while(fscanf(insertScriptFile, "%s", scriptBlock) != EOF)
+		{
+			fprintf(htmlFile, "%s", scriptBlock);
+		}
+
+		strcpy(commandCopyHtaccess, "cp ");
+		strcat(commandCopyHtaccess, SOURCE_PATH);
+		strcat(commandCopyHtaccess, ".htaccess");
+		strcat(commandCopyHtaccess, " ");
+		strcat(commandCopyHtaccess, pathHtml);
+		
+		system(commandCopyHtaccess);
 	}
 
 	return 0;
