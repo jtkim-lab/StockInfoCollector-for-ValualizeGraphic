@@ -7,5 +7,6 @@
 #define MAX_PATH 1000
 #define MAX_BLOCK 1000
 #define MAX_SYMBOL 100
+#define MAX_DATA 100
 
 #endif

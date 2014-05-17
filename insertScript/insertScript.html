@@ -1,38 +1,39 @@
 
 <script language="javascript">
 
-	var pr = document.getElementsByClassName("pr");
-	var val = document.getElementsByClassName("val");
+var pr = document.getElementsByClassName("pr");
+var val = document.getElementsByClassName("val");
 
-	var closedPrice = pr.item(0).innerText;
-	var marketCap = val.item(4).innerText;
-	var vol = val.item(3).innerText;
+var closedPrice = pr.item(0).innerText;
+var marketCap = val.item(4).innerText;
+var vol = val.item(3).innerText;
 
-	alert(closedPrice);
+alert(closedPrice);
 
 </script>
 
 <script>
 
-	<?php
-		
-		$f1 = "closedPrice.txt";
-		$f2 = "vol.txt";
-		$f3 = "marketCap.txt";
-		$fs1 = fopen($f1, "w");
-		$fs2 = fopen($f2, "w");
-		$fs3 = fopen($f3, "w");
-		$cp = closedPrice;
-		$v = vol;
-		$mc = marketCap;
+<?php
 
-		fwrite($fs1, $cp);
-		fwrite($fs2, $v);
-		fwrite($fs3, $mc);
-		
-		fclose($fs1);
-		fclose($fs2);
-		fclose($fs3);
-	?>
+$f1 = "closedPrice.txt";
+$f2 = "vol.txt";
+$f3 = "marketCap.txt";
+$fs1 = fopen($f1, "w");
+$fs2 = fopen($f2, "w");
+$fs3 = fopen($f3, "w");
+
+$cp = echo "closedPrice";
+$v = echo "vol";
+$mc = echo "marketCap";
+
+fwrite($fs1, $cp);
+fwrite($fs2, $v);
+fwrite($fs3, $mc);
+
+fclose($fs1);
+fclose($fs2);
+fclose($fs3);
+?>
 
 </script>
