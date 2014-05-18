@@ -1,7 +1,9 @@
 ValualizeGraphic
 ==============================
-Valualize Graphic
+
+Valualize Graphic: 
 http://graphic.valualize.com
+
 ==============================
 
 author: Jungtaek Kim
