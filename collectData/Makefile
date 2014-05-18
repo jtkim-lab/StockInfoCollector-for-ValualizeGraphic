@@ -23,7 +23,7 @@
 
 CC = gcc
 OBJS = collectData.o
-TARGET = collectData
+TARGET = collectData.out
 
 .SUFFIXES : .c .o
 

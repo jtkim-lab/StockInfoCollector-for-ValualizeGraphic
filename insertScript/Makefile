@@ -23,7 +23,7 @@
 
 CC = gcc
 OBJS = insertScript.o
-TARGET = insertScript
+TARGET = insertScript.out
 
 .SUFFIXES : .c .o
 

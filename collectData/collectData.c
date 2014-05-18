@@ -30,6 +30,12 @@ int main()
 	char vol[MAX_DATA];
 	char marketCap[MAX_DATA];
 
+	char equationVol[MAX_DATA];
+	char equationMarketCap[MAX_DATA];
+
+	char* pch1;
+	char* pch2;
+
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
 
@@ -72,7 +78,61 @@ int main()
 		fscanf(dataFile, "%s", vol);
 		fscanf(dataFile, "%s", marketCap);
 
-		fprintf(collectFile, "%s\t%s\t%s\n", closedPrice, vol, marketCap);
+		pch1 = strchr(vol, 'M');
+		
+		if(pch1 != NULL)
+		{
+			strcpy(equationVol, "=");
+			strncat(equationVol, vol, pch1 - vol);
+			strcat(equationVol, "*10^6");
+		}
+
+		pch1 = strchr(vol, 'B');
+
+		if(pch1 != NULL)
+		{
+			strcpy(equationVol, "=");
+			strncat(equationVol, vol, pch1 - vol);
+			strcat(equationVol, "*10^9");
+		}
+
+		pch1 = strchr(vol, 'T');
+
+		if(pch1 != NULL)
+		{
+			strcpy(equationVol, "=");
+			strncat(equationVol, vol, pch1 - vol);
+			strcat(equationVol, "*10^12");
+		}
+		
+		pch2 = strchr(marketCap, 'M');
+
+		if(pch2 != NULL)
+		{
+			strcpy(equationMarketCap, "=");
+			strncat(equationMarketCap, marketCap, pch2 - marketCap);
+			strcat(equationMarketCap, "*10^6");
+		}
+
+		pch2 = strchr(marketCap, 'B');
+
+		if(pch2 != NULL)
+		{
+			strcpy(equationMarketCap, "=");
+			strncat(equationMarketCap, marketCap, pch2 - marketCap);
+			strcat(equationMarketCap, "*10^9");
+		}
+
+		pch2 = strchr(marketCap, 'T');
+
+		if(pch2 != NULL)
+		{
+			strcpy(equationMarketCap, "=");
+			strncat(equationMarketCap, marketCap, pch2 - marketCap);
+			strcat(equationMarketCap, "*10^12");
+		}
+
+		fprintf(collectFile, "%s\t%s\t%s\n", closedPrice, equationVol, equationMarketCap);
 		
 		fclose(dataFile);
 	}

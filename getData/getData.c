@@ -55,8 +55,8 @@ int main()
 	while(fscanf(stockListFile, "%s %s %s", company, symbol, url) != EOF)
 	{
 		memset(closedPrice, '\0', MAX_DATA);
-		memset(closedPrice, '\0', MAX_DATA);
-		memset(closedPrice, '\0', MAX_DATA);
+		memset(vol, '\0', MAX_DATA);
+		memset(marketCap, '\0', MAX_DATA);
 
 		strcpy(pathHtml, "../data_html/");
 		strcat(pathHtml, currentTime);
@@ -89,7 +89,7 @@ int main()
 				printf("DEBUG: closedPrice %s\n", closedPrice);
 			}
 
-			if(strstr(scriptBlock, "data-snapfield=\"vol_and_avg\">Vol / Avg.") != NULL)
+			if(strstr(scriptBlock, "data-snapfield=\"vol_and_avg\">Vol") != NULL)
 			{
 				printf("DEBUG: %s\n", scriptBlock);
 
@@ -97,12 +97,18 @@ int main()
 				fgets(scriptBlock, MAX_BLOCK, htmlFile);
 				printf("DEBUG: %s\n", scriptBlock);
 				pch1 = strchr(scriptBlock, '>');
-
-				for (int i = 0; i < MAX_DATA; i++)
+				pch2 = strrchr(scriptBlock, '/');
+				
+				if (pch2 == NULL)
 				{
-					if(scriptBlock[i] == '\0')
-						pch2 = &scriptBlock[i];
+					for (int i = 0; i < MAX_DATA; i++)
+					{
+						if(scriptBlock[i] == '\0')
+							pch2 = &scriptBlock[i];
+					}
 				}
+
+				printf("DEBUG: pch2 %s\n", pch2);
 
 				strncpy(vol, pch1 + 1, pch2 - pch1 - 1);
 				printf("DEBUG: vol %s\n", vol);
@@ -138,7 +144,7 @@ int main()
 		dataFile = fopen(pathDataFile, "w");
 	
 		printf("DEBUG: %s %s %s\n", closedPrice, vol, marketCap);
-		fprintf(dataFile, "%s\n%s%s", closedPrice, vol, marketCap);	
+		fprintf(dataFile, "%s\n%s\n%s", closedPrice, vol, marketCap);	
 
 		fclose(dataFile);
 	}

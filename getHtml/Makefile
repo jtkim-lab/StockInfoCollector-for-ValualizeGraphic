@@ -23,7 +23,7 @@
 
 CC = gcc
 OBJS = getHtml.o
-TARGET = getHtml
+TARGET = getHtml.out
 
 .SUFFIXES : .c .o
 
