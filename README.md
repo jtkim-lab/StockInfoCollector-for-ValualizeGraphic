@@ -2,7 +2,6 @@ ValualizeGraphic
 ==============================
 Valualize Graphic
 http://graphic.valualize.com
-
 ==============================
 
 author: Jungtaek Kim
@@ -10,8 +9,6 @@ author: Jungtaek Kim
 email: jungtaek.kim@jt-inc.net
 
 site: http://www.jt-inc.net
-
-==============================
 
 Description
 ==============================
@@ -33,19 +30,21 @@ Collected data is saved in 'year-month-day.data'. The format of data extension i
 
 Directory
 ==============================
-/
-	path.h
-	max.h
-	stock.list
-getHtml/
-	getHtml.c
-	getHtml.h
-getData/
-	getData.c
-	getData.h
-insertScript/
-	insertScript.c
-	insertScript.h
-collectData/
-	collectData.c
-	collectData.h
+	/
+		path.h
+		max.h
+		stock.list
+	getHtml/
+		getHtml.c
+		getHtml.h
+	getData/
+		getData.c
+		getData.h
+	insertScript/
+		insertScript.c
+		insertScript.h
+	collectData/
+		collectData.c
+		collectData.h
+
+Jungtaek Kim
