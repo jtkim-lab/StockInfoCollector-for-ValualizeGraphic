@@ -83,5 +83,7 @@ int main()
 		system(commandCopyHtaccess);
 	}
 
+	fclose(stockListFile);
+
 	return 0;
 }

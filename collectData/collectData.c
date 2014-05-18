@@ -73,7 +73,12 @@ int main()
 		fscanf(dataFile, "%s", marketCap);
 
 		fprintf(collectFile, "%s\t%s\t%s\n", closedPrice, vol, marketCap);
+		
+		fclose(dataFile);
 	}
 	
+	fclose(stockListFile);
+	fclose(collectFile);
+
 	return 0;
 }

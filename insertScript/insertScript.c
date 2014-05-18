@@ -66,7 +66,12 @@ int main()
 		{
 			fputs(scriptBlock, htmlFile);
 		}
+
+		fclose(htmlFile);
+		fclose(insertScriptFile);
 	}
+
+	fclose(stockListFile);
 
 	return 0;
 }

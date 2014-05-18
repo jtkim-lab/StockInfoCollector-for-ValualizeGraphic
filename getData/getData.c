@@ -129,6 +129,8 @@ int main()
 			}
 		}
 
+		fclose(htmlFile);
+
 		strcpy(pathDataFile, pathHtml);
 		strcat(pathDataFile, company);
 		strcat(pathDataFile, ".data");
@@ -137,7 +139,11 @@ int main()
 	
 		printf("DEBUG: %s %s %s\n", closedPrice, vol, marketCap);
 		fprintf(dataFile, "%s\n%s%s", closedPrice, vol, marketCap);	
+
+		fclose(dataFile);
 	}
+
+	fclose(stockListFile);
 
 	return 0;
 }
