@@ -72,6 +72,8 @@ int main()
 		htmlFile = fopen(pathHtmlFile, "r");
 
 		printf("DEBUG: %s\n", pathHtmlFile);
+		
+		memset(scriptBlock, '\0', MAX_BLOCK);
 
 		while(fgets(scriptBlock, MAX_BLOCK, htmlFile) != NULL)
 		{
@@ -79,6 +81,7 @@ int main()
 			{
 				printf("DEBUG: %s\n", scriptBlock);
 
+				memset(scriptBlock, '\0', MAX_BLOCK);
 				fgets(scriptBlock, MAX_BLOCK, htmlFile);
 				
 				printf("DEBUG: %s\n", scriptBlock);
@@ -93,7 +96,10 @@ int main()
 			{
 				printf("DEBUG: %s\n", scriptBlock);
 
+				memset(scriptBlock, '\0', MAX_BLOCK);
 				fgets(scriptBlock, MAX_BLOCK, htmlFile);
+
+				memset(scriptBlock, '\0', MAX_BLOCK);
 				fgets(scriptBlock, MAX_BLOCK, htmlFile);
 				printf("DEBUG: %s\n", scriptBlock);
 				pch1 = strchr(scriptBlock, '>');
@@ -118,7 +124,10 @@ int main()
 			{
 				printf("DEBUG: %s\n", scriptBlock);
 
+				memset(scriptBlock, '\0', MAX_BLOCK);
 				fgets(scriptBlock, MAX_BLOCK, htmlFile);
+
+				memset(scriptBlock, '\0', MAX_BLOCK);
 				fgets(scriptBlock, MAX_BLOCK, htmlFile);
 				printf("DEBUG: %s\n", scriptBlock);
 				pch1 = strchr(scriptBlock, '>');

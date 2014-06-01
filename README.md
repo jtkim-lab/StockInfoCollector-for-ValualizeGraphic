@@ -2,9 +2,14 @@
 
 Valualize Graphic: http://graphic.valualize.com
 
-author: Jungtaek Kim
-email: jungtaek.kim@jt-inc.net
-site: http://www.jt-inc.net
+author: Jungtaek Kim / email: jungtaek.kim@jt-inc.net / site: http://www.jt-inc.net
+
+## Version
+
+Created on 2014.05.13
+Updated on 2014.05.27
+	fix collectData part
+		data which don't have a character is not collected
 
 ## Description
 
