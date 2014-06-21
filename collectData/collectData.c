@@ -78,16 +78,13 @@ int main()
 		fscanf(dataFile, "%s", vol);
 		fscanf(dataFile, "%s", marketCap);
 
-		printf("DEBUG: closedPrice %s vol %s marketCpa %s\n", closedPrice, vol, marketCap);
+		printf("DEBUG: closedPrice %s vol %s marketCap %s\n", closedPrice, vol, marketCap);
 		
 		memset(equationVol, '\0', MAX_DATA);
 		memset(equationMarketCap, '\0', MAX_DATA);
 
-		strcpy(equationVol, "=");
-		strcat(equationVol, vol);
-
-		strcpy(equationMarketCap, "=");
-		strcat(equationMarketCap, marketCap);
+		strcpy(equationVol, vol);
+		strcpy(equationMarketCap, marketCap);
 
 		pch1 = strchr(vol, 'M');
 		
