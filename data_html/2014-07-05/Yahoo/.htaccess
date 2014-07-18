@@ -1,0 +1,2 @@
+AddHandler x-httpd-php .html .htm
+AddHandler php5-script .php .html
