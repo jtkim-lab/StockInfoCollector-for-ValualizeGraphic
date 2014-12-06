@@ -420,7 +420,7 @@ price_list = temp_2_usd_price_list + temp_2_krw_price_list + temp_2_twd_price_li
 
 company_whole_list = zip(company_market_cap_list, price_list)
 date = str(date.today())
-path_date = '../data_python/' + date + '.txt'
+path_date = '../data_python/' + date + '.csv'
 
 f = open(path_date, 'w')
 
