@@ -73,7 +73,11 @@ while True:
 		r = requests.get(google_url)
 		data = r.text
 		soup = BeautifulSoup(data)
-		TMP = soup.findAll("span", {"class" : "bld"})[0].next_element
+		try:
+			TMP = soup.findAll("span", {"class" : "bld"})[0].next_element
+		except IndexError:
+			break
+
 		TMP = TMP.strip("KRWJPYTWDHKD ")
 		TMP = TMP.replace(',', '')
 	
@@ -90,8 +94,12 @@ while True:
 		r = requests.get(google_url)
 		data = r.text
 		soup = BeautifulSoup(data)
-		pr = soup.findAll("span", {"class" : "pr"})[0].next_element.next_element.next_element
-		mc = soup.findAll("td", {"data-snapfield" : "market_cap"})[0].next_element.next_element.next_element.next_element
+		try:
+			pr = soup.findAll("span", {"class" : "pr"})[0].next_element.next_element.next_element
+			mc = soup.findAll("td", {"data-snapfield" : "market_cap"})[0].next_element.next_element.next_element.next_element
+		except IndexError:
+			break
+		
 		pr = pr.replace(',', '')
 		pr = pr.rstrip()
 		mc = mc.rstrip()
