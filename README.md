@@ -47,6 +47,7 @@ Collected data is saved in 'year-month-day.data'. The format of data extension i
 	collectData/
 		collectData.c
 		collectData.h
-
+	pythonVersion/
+		stockInfoCollector.py
 
 Jungtaek Kim
