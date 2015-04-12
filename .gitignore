@@ -24,3 +24,5 @@
 
 # Swapped files
 *.swp
+
+.DS_Store
